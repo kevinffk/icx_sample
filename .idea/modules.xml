@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/core-faceplus/core-faceplus.iml" filepath="$PROJECT_DIR$/core-faceplus/core-faceplus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../icarbonx-android-core/core-faceplus/core-faceplus/core-faceplus.iml" filepath="$PROJECT_DIR$/../../icarbonx-android-core/core-faceplus/core-faceplus/core-faceplus.iml" />
+      <module fileurl="file://E:\kaikevin\asProj\icarbonx-android\icarbonx-android-project\icx_sample\core-faceplus\core-faceplus.iml" filepath="E:\kaikevin\asProj\icarbonx-android\icarbonx-android-project\icx_sample\core-faceplus\core-faceplus.iml" />
       <module fileurl="file://$PROJECT_DIR$/icx_sample.iml" filepath="$PROJECT_DIR$/icx_sample.iml" />
     </modules>
   </component>

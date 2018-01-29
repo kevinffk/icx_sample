@@ -4,225 +4,76 @@ include ':app'
 /**
  * 检查添加core
  */
-//def checkAddCore(String coreName, def coreFlag) {
-//    if(coreFlag.toBoolean()) {
-//        include(":${coreName}")
-//        project(":${coreName}").projectDir = new File(settingsDir, "../../icarbonx-android-core/${coreName}/${coreName}")
-//    }
-//}
+def checkAddCore(String coreName, def coreFlag) {
+    if(coreFlag.toBoolean()) {
+        include(":${coreName}")
+        project(":${coreName}").projectDir = new File(settingsDir, "../../icarbonx-android-core/${coreName}/${coreName}")
+    }
+}
 
 /**
  * 检查添加module
  */
-//def checkAddModule(String moduleName, def moduleFlag) {
-//    if(moduleFlag.toBoolean()) {
-//        include(":${moduleName}")
-//        project(":${moduleName}").projectDir = new File(settingsDir, "../icarbonx-android-module/${moduleName}/${moduleName}")
-//    }
-//}
+def checkAddModule(String moduleName, def moduleFlag) {
+    if(moduleFlag.toBoolean()) {
+        include(":${moduleName}")
+        project(":${moduleName}").projectDir = new File(settingsDir, "../../icarbonx-android-module/${moduleName}/${moduleName}")
+    }
+}
 
 /**
  * 检查添加project
  */
-//def checkAddProject(String projectName, def prjectFlag) {
-//    if(prjectFlag.toBoolean()) {
-//        include(":${projectName}")
-//        project(":${projectName}").projectDir = new File(settingsDir, "../icarbonx-android-core/${projectName}/${projectName}")
-//    }
-//}
-
+def checkAddProject(String projectName, def prjectFlag) {
+    if(prjectFlag.toBoolean()) {
+        include(":${projectName}")
+        project(":${projectName}").projectDir = new File(settingsDir, "../${projectName}/${projectName}")
+    }
+}
 
 // ------------------------------------
 //             Project
 // ------------------------------------
 
-//checkAddProject('project-bong', project_bong_dev)
-//checkAddProject('project-metabolite', project_metabolite_dev)
-//checkAddProject('project-microflora', project_microflora_dev)
-//checkAddProject('project-gene', project_gene_dev)
-//checkAddProject('project-sports', project_sports_dev)
-//checkAddProject('project-icxstrap', project_icxstrap_dev)
-//checkAddProject('project-fit', project_fit_dev)
-//checkAddProject('project-heartguard', project_heartguard_dev)
-//checkAddProject('project-heartratepaste', project_heartratepaste_dev)
-//checkAddProject('project-smartmirror', project_smartmirror_dev)
-//checkAddProject('project-assistant', project_assistant_dev)
-//checkAddProject('project-tomato', project_tomato_dev)
-//checkAddProject('project-protein', project_protein_dev)
-//checkAddProject('project-blood-routine', project_blood_routine_dev)
-//checkAddProject('project-heartguard', project_heartguard_dev)
+checkAddProject('project-bong', project_bong_dev)
+checkAddProject('project-metabolite', project_metabolite_dev)
+checkAddProject('project-microflora', project_microflora_dev)
+checkAddProject('project-gene', project_gene_dev)
+checkAddProject('project-sports', project_sports_dev)
+checkAddProject('project-icxstrap', project_icxstrap_dev)
+checkAddProject('project-fit', project_fit_dev)
+checkAddProject('project-heartguard', project_heartguard_dev)
+checkAddProject('project-heartratepaste', project_heartratepaste_dev)
+checkAddProject('project-smartmirror', project_smartmirror_dev)
+checkAddProject('project-assistant', project_assistant_dev)
+checkAddProject('project-tomato', project_tomato_dev)
+checkAddProject('project-protein', project_protein_dev)
+checkAddProject('project-blood-routine', project_blood_routine_dev)
+checkAddProject('project-heartguard', project_heartguard_dev)
 
 // ------------------------------------
 //             Module
 // ------------------------------------
-//checkAddModule('module-core', module_core_dev)
-//checkAddModule('module-user', module_user_dev)
-//checkAddModule('module-sample', module_sample_dev)
-//checkAddModule('module-order', module_order_dev)
-//checkAddModule('module-address', module_address_dev)
+checkAddModule('module-core', module_core_dev)
+checkAddModule('module-user', module_user_dev)
+checkAddModule('module-sample', module_sample_dev)
+checkAddModule('module-order', module_order_dev)
+checkAddModule('module-address', module_address_dev)
 
 // ------------------------------------
 //             Core
 // ------------------------------------
-//checkAddCore('core-slidingmenu', core_slidingmenu_dev)
-//checkAddCore('core-residemenu', core_residemenu_dev)
-//checkAddCore('core-mpchart', core_mpchart_dev)
-//checkAddCore('core-calendar', core_calendar_dev)
-//checkAddCore('core-common', core_common_dev)
-//checkAddCore('core-meum', core_meum_dev)
-//checkAddCore('core-udesk', core_udesk_dev)
-//checkAddCore('core-qrcode', core_qrcode_dev)
-//checkAddCore('core-threadsdownloader', core_threadsdownloader_dev)
-//checkAddCore('core-message', core_message_dev)
-//checkAddCore('core-icxchart', core_icxchart_dev)
-//checkAddCore('core-resource', core_resource_dev)
-//checkAddCore('core-ui', core_ui_dev)
-//checkAddCore('core-faceplus', core_faceplus_dev)
-
-
-/*
-// ------------------------------------
-//             Project
-// ------------------------------------
-if (project_bong_dev.toBoolean()) {
-    include ':project-bong'
-    project(':project-bong').projectDir = new File(settingsDir, '../project-bong/project-bong')
-}
-if (project_metabolite_dev.toBoolean()) {
-    include ':project-metabolite'
-    project(':project-metabolite').projectDir = new File(settingsDir, '../project-metabolite/project-metabolite')
-}
-if (project_microflora_dev.toBoolean()) {
-    include ':project-microflora'
-    project(':project-microflora').projectDir = new File(settingsDir, '../project-microflora/project-microflora')
-}
-if (project_gene_dev.toBoolean()) {
-    include ':project-gene'
-    project(':project-gene').projectDir = new File(settingsDir, '../project-gene/project-gene')
-}
-if (project_sports_dev.toBoolean()) {
-    include ':project-sports'
-    project(':project-sports').projectDir = new File(settingsDir, '../project-sports/project-sports')
-}
-if (project_icxstrap_dev.toBoolean()) {
-    include ':project-icxstrap'
-    project(':project-icxstrap').projectDir = new File(settingsDir, '../project-icxstrap/project-icxstrap')
-}
-if (project_fit_dev.toBoolean()) {
-    include ':project-fit'
-    project(':project-fit').projectDir = new File(settingsDir, '../project-fit/project-fit')
-}
-if (project_heartguard_dev.toBoolean()) {
-    include ':project-heartguard'
-    project(':project-heartguard').projectDir = new File(settingsDir, '../project-heartguard/project-heartguard')
-}
-if (project_heartratepaste_dev.toBoolean()) {
-    include ':project-heartratepaste'
-    project(':project-heartratepaste').projectDir = new File(settingsDir, '../project-heartratepaste/project-heartratepaste')
-}
-if (project_smartmirror_dev.toBoolean()) {
-    include ':project-smartmirror'
-    project(':project-smartmirror').projectDir = new File(settingsDir, '../project-smartmirror/project-smartmirror')
-}
-if (project_assistant_dev.toBoolean()) {
-    include ':project-assistant'
-    project(':project-assistant').projectDir = new File(settingsDir, '../project-assistant/project-assistant')
-}
-if (project_tomato_dev.toBoolean()) {
-    include ':project-tomato'
-    project(':project-tomato').projectDir = new File(settingsDir, '../project-tomato/project-tomato')
-}
-if (project_protein_dev.toBoolean()) {
-    include ':project-protein'
-    project(':project-protein').projectDir = new File(settingsDir, '../project-protein/project-protein')
-}
-
-if (project_blood_routine_dev.toBoolean()) {
-    include ':project-blood-routine'
-    project(':project-blood-routine').projectDir = new File(settingsDir, '../project-blood-routine/project-blood-routine')
-}
-// ------------------------------------
-//             Module
-// ------------------------------------
-if (module_core_dev.toBoolean()) {
-    include ':module-core'
-    project(':module-core').projectDir = new File(settingsDir, '../../icarbonx-android-module/module-core/module-core')
-}
-
-if (module_user_dev.toBoolean()) {
-    include ':module-user'
-    project(':module-user').projectDir = new File(settingsDir, '../../icarbonx-android-module/module-user/module-user')
-}
-if (module_sample_dev.toBoolean()) {
-    include ':module-sample'
-    project(':module-sample').projectDir = new File(settingsDir, '../../icarbonx-android-module/module-sample/module-sample')
-}
-if (module_order_dev.toBoolean()) {
-    include ':module-order'
-    project(':module-order').projectDir = new File(settingsDir, '../../icarbonx-android-module/module-order/module-order')
-}
-if (module_address_dev.toBoolean()) {
-    include ':module-address'
-    project(':module-address').projectDir = new File(settingsDir, '../../icarbonx-android-module/module-address/module-address')
-}
-
-// ------------------------------------
-//             Core
-// ------------------------------------
-if (core_slidingmenu_dev.toBoolean()) {
-    include ':core-slidingmenu'
-    project(':core-slidingmenu').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-slidingmenu/core-slidingmenu')
-}
-if (core_residemenu_dev.toBoolean()) {
-    include ':core-residemenu'
-    project(':core-residemenu').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-residemenu/core-residemenu')
-}
-if (core_mpchart_dev.toBoolean()) {
-    include ':core-mpchart'
-    project(':core-mpchart').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-mpchart/core-mpchart')
-}
-if (core_calendar_dev.toBoolean()) {
-    include ':core-calendar'
-    project(':core-calendar').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-calendar/core-calendar')
-}
-if (core_common_dev.toBoolean()) {
-    include ':core-common'
-    project(':core-common').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-common/core-common')
-}
-if (core_meum_dev.toBoolean()) {
-    include ':core-meum'
-    project(':core-meum').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-meum/core-meum')
-}
-if (core_udesk_dev.toBoolean()) {
-    include ':core-udesk'
-    project(':core-udesk').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-udesk/core-udesk')
-}
-if (core_qrcode_dev.toBoolean()) {
-    include ':core-qrcode'
-    project(':core-qrcode').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-qrcode/core-qrcode')
-}
-if (core_threadsdownloader_dev.toBoolean()) {
-    include ':core-threadsdownloader'
-    project(':core-threadsdownloader').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-threadsdownloader/core-threadsdownloader')
-}
-if (core_message_dev.toBoolean()) {
-    include ':core-message'
-    project(':core-message').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-message/core-message')
-}
-if (core_icxchart_dev.toBoolean()) {
-    include ':core-icxchart'
-    project(':core-icxchart').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-icxchart/core-icxchart')
-}
-
-if (core_resource_dev.toBoolean()) {
-    include ':core-resource'
-    project(':core-resource').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-resource/core-resource')
-}
-if (core_ui_dev.toBoolean()) {
-    include ':core-ui'
-    project(':core-ui').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-ui/core-ui')
-}*/
-if (core_faceplus_dev.toBoolean()) {
-    include ':core-faceplus'
-//    project(':core-faceplus').projectDir = new File(settingsDir, '../../icarbonx-android-core/core-faceplus/core-faceplus')
-}
+checkAddCore('core-slidingmenu', core_slidingmenu_dev)
+checkAddCore('core-residemenu', core_residemenu_dev)
+checkAddCore('core-mpchart', core_mpchart_dev)
+checkAddCore('core-calendar', core_calendar_dev)
+checkAddCore('core-common', core_common_dev)
+checkAddCore('core-meum', core_meum_dev)
+checkAddCore('core-udesk', core_udesk_dev)
+checkAddCore('core-qrcode', core_qrcode_dev)
+checkAddCore('core-threadsdownloader', core_threadsdownloader_dev)
+checkAddCore('core-message', core_message_dev)
+checkAddCore('core-icxchart', core_icxchart_dev)
+checkAddCore('core-resource', core_resource_dev)
+checkAddCore('core-ui', core_ui_dev)
+checkAddCore('core-faceplus', core_faceplus_dev)
