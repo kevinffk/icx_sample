@@ -1,35 +1,35 @@
 include ':app'
 
 
-/**
- * 检查添加core
- */
-def checkAddCore(String coreName, def coreFlag) {
-    if(coreFlag.toBoolean()) {
-        include(":${coreName}")
-        project(":${coreName}").projectDir = new File(settingsDir, "../../icarbonx-android-core/${coreName}/${coreName}")
-    }
-}
-
-/**
- * 检查添加module
- */
-def checkAddModule(String moduleName, def moduleFlag) {
-    if(moduleFlag.toBoolean()) {
-        include(":${moduleName}")
-        project(":${moduleName}").projectDir = new File(settingsDir, "../../icarbonx-android-module/${moduleName}/${moduleName}")
-    }
-}
-
-/**
- * 检查添加project
- */
-def checkAddProject(String projectName, def prjectFlag) {
-    if(prjectFlag.toBoolean()) {
-        include(":${projectName}")
-        project(":${projectName}").projectDir = new File(settingsDir, "../${projectName}/${projectName}")
-    }
-}
+///**
+// * 检查添加core
+// */
+//def checkAddCore(String coreName, def coreFlag) {
+//    if(coreFlag.toBoolean()) {
+//        include(":${coreName}")
+//        project(":${coreName}").projectDir = new File(settingsDir, "../../icarbonx-android-core/${coreName}/${coreName}")
+//    }
+//}
+//
+///**
+// * 检查添加module
+// */
+//def checkAddModule(String moduleName, def moduleFlag) {
+//    if(moduleFlag.toBoolean()) {
+//        include(":${moduleName}")
+//        project(":${moduleName}").projectDir = new File(settingsDir, "../../icarbonx-android-module/${moduleName}/${moduleName}")
+//    }
+//}
+//
+///**
+// * 检查添加project
+// */
+//def checkAddProject(String projectName, def prjectFlag) {
+//    if(prjectFlag.toBoolean()) {
+//        include(":${projectName}")
+//        project(":${projectName}").projectDir = new File(settingsDir, "../${projectName}/${projectName}")
+//    }
+//}
 
 // ------------------------------------
 //             Project
