@@ -5,10 +5,20 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven { url 'https://www.jitpack.io' }
+        maven() {
+            url 'http://nexus.icarbonx.cn/repository/android-public/'
+            credentials {
+                username 'android'
+                password '424ee15905e3a760dd869010a505a36a'
+            }
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.1'
-        
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,7 +28,27 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
+        maven { url 'https://jitpack.io' }
+        maven() {
+            if (isDevelop.toBoolean()) {
+                url 'http://nexus.icarbonx.cn/repository/android-public/'
+            } else {
+                url 'http://nexus.icarbonx.cn/repository/android-release/'
+            }
+            credentials {
+                username 'android'
+                password '424ee15905e3a760dd869010a505a36a'
+            }
+        }
+        // 添加bong sdk 算法库所在的 maven 地址
+        maven {
+            url 'http://112.124.27.178:9093/repository/maven-public/'
+        }
+        flatDir {
+            dirs 'libs','../../project-tomato/project-tomato/libs'
+        }
     }
 }
 

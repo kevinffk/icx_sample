@@ -1,79 +1,92 @@
 include ':app'
 
+/**
+ * 检查添加单元
+ * @param dirPre  父类目录
+ * @param unitNameArray  模块名称数组
+ */
+def checkAddUnit(String dirPre, String ... unitNameArray) {
+    if (unitNameArray != null && unitNameArray.length> 0) {
+        for(int i = 0; i < unitNameArray.length; i++) {
+            String unitFileName = unitNameArray[i].replace("_dev", "").replace("_", "-")  // core
+            if (this."${unitNameArray[i]}".toBoolean()) {
+                include(":$unitFileName")
+                project(":$unitFileName").projectDir = new File(settingsDir, "${dirPre}/${unitFileName}/${unitFileName}")
+            }
+        }
+    }
+}
 
-///**
-// * 检查添加core
-// */
-//def checkAddCore(String coreName, def coreFlag) {
-//    if(coreFlag.toBoolean()) {
-//        include(":${coreName}")
-//        project(":${coreName}").projectDir = new File(settingsDir, "../../icarbonx-android-core/${coreName}/${coreName}")
-//    }
-//}
-//
-///**
-// * 检查添加module
-// */
-//def checkAddModule(String moduleName, def moduleFlag) {
-//    if(moduleFlag.toBoolean()) {
-//        include(":${moduleName}")
-//        project(":${moduleName}").projectDir = new File(settingsDir, "../../icarbonx-android-module/${moduleName}/${moduleName}")
-//    }
-//}
-//
-///**
-// * 检查添加project
-// */
-//def checkAddProject(String projectName, def prjectFlag) {
-//    if(prjectFlag.toBoolean()) {
-//        include(":${projectName}")
-//        project(":${projectName}").projectDir = new File(settingsDir, "../${projectName}/${projectName}")
-//    }
-//}
+/**
+ * 检查添加core.
+ * @param unitNameArray  模块数组
+ */
+def checkAddCore(String... unitNameArray) {
+    checkAddUnit "../../icarbonx-android-core/", unitNameArray
+}
+
+/**
+ * 检查添加module.
+ * @param unitNameArray  模块数组
+ */
+def checkAddModule(String... unitNameArray) {
+    checkAddUnit "../../icarbonx-android-module/", unitNameArray
+}
+
+/**
+ * 检查添加core.
+ * @param unitNameArray  模块数组
+ */
+def checkAddProject(String... unitNameArray) {
+    checkAddUnit "../", unitNameArray
+}
+
+
 
 // ------------------------------------
 //             Project
 // ------------------------------------
+checkAddProject 'project_bong_dev',
+        'project_metabolite_dev',
+        'project_microflora_dev',
+        'project_gene_dev',
+        'project_sports_dev',
+        'project_icxstrap_dev',
+        'project_fit_dev',
+        'project_heartguard_dev',
+        'project_heartratepaste_dev',
+        'project_smartmirror_dev',
+        'project_assistant_dev',
+        'project_tomato_dev',
+        'project_protein_dev',
+        'project_blood_routine_dev',
+        'project_heartguard_dev'
 
-checkAddProject('project-bong', project_bong_dev)
-checkAddProject('project-metabolite', project_metabolite_dev)
-checkAddProject('project-microflora', project_microflora_dev)
-checkAddProject('project-gene', project_gene_dev)
-checkAddProject('project-sports', project_sports_dev)
-checkAddProject('project-icxstrap', project_icxstrap_dev)
-checkAddProject('project-fit', project_fit_dev)
-checkAddProject('project-heartguard', project_heartguard_dev)
-checkAddProject('project-heartratepaste', project_heartratepaste_dev)
-checkAddProject('project-smartmirror', project_smartmirror_dev)
-checkAddProject('project-assistant', project_assistant_dev)
-checkAddProject('project-tomato', project_tomato_dev)
-checkAddProject('project-protein', project_protein_dev)
-checkAddProject('project-blood-routine', project_blood_routine_dev)
-checkAddProject('project-heartguard', project_heartguard_dev)
-
+//
 // ------------------------------------
 //             Module
 // ------------------------------------
-checkAddModule('module-core', module_core_dev)
-checkAddModule('module-user', module_user_dev)
-checkAddModule('module-sample', module_sample_dev)
-checkAddModule('module-order', module_order_dev)
-checkAddModule('module-address', module_address_dev)
+checkAddModule 'module_core_dev',
+        'module_user_dev',
+        'module_sample_dev',
+        'module_order_dev',
+        'module_address_dev'
 
 // ------------------------------------
 //             Core
 // ------------------------------------
-checkAddCore('core-slidingmenu', core_slidingmenu_dev)
-checkAddCore('core-residemenu', core_residemenu_dev)
-checkAddCore('core-mpchart', core_mpchart_dev)
-checkAddCore('core-calendar', core_calendar_dev)
-checkAddCore('core-common', core_common_dev)
-checkAddCore('core-meum', core_meum_dev)
-checkAddCore('core-udesk', core_udesk_dev)
-checkAddCore('core-qrcode', core_qrcode_dev)
-checkAddCore('core-threadsdownloader', core_threadsdownloader_dev)
-checkAddCore('core-message', core_message_dev)
-checkAddCore('core-icxchart', core_icxchart_dev)
-checkAddCore('core-resource', core_resource_dev)
-checkAddCore('core-ui', core_ui_dev)
-checkAddCore('core-faceplus', core_faceplus_dev)
+checkAddCore 'core_slidingmenu_dev',
+        'core_residemenu_dev',
+        'core_mpchart_dev',
+        'core_calendar_dev',
+        'core_common_dev',
+        'core_meum_dev',
+        'core_udesk_dev',
+        'core_qrcode_dev',
+        'core_threadsdownloader_dev',
+        'core_message_dev',
+        'core_icxchart_dev',
+        'core_resource_dev',
+        'core_ui_dev',
+        'core_faceplus_dev'
+
