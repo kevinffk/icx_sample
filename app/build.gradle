@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        applicationId "icxsample.icarbonx.com.myapplication"
+        applicationId "com.icarbonx.icxsample"
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
@@ -33,15 +33,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-/*    if (!core_faceplus_dev.toBoolean()) {
-        compile(rootProject.ext.core_faceplus_compile) {
-            exclude group: rootProject.ext.groupid_project
-            exclude group: rootProject.ext.groupid_module
-            exclude group: rootProject.ext.groupid_core
-        }
-    } else {
-        compile project(":" + rootProject.ext.core_faceplus)
-    }*/
 
 }
 
