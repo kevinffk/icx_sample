@@ -59,8 +59,7 @@ checkAddProject 'project_bong_dev',
         'project_assistant_dev',
         'project_tomato_dev',
         'project_protein_dev',
-        'project_blood_routine_dev',
-        'project_heartguard_dev'
+        'project_blood_routine_dev'
 
 //
 // ------------------------------------

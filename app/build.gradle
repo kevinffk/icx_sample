@@ -34,5 +34,66 @@ dependencies {
     })
 
 
+    annotationProcessor rootProject.ext.butterknifeCompiler
+
+
+    //project
+    checkDependency 'project_metabolite_dev',
+//            'project_bong_dev',
+            'project_microflora_dev',
+            'project_gene_dev',
+            'project_sports_dev',
+            'project_icxstrap_dev',
+            'project_fit_dev',
+//            'project_heartguard_dev',
+            'project_heartratepaste_dev',
+            'project_smartmirror_dev',
+            'project_assistant_dev',
+            'project_tomato_dev',
+            'project_protein_dev',
+            'project_blood_routine_dev',
+            //module
+            'module_core_dev',
+            'module_user_dev',
+            'module_sample_dev',
+            'module_order_dev',
+            'module_address_dev',
+            //core
+             'core_slidingmenu_dev',
+            'core_residemenu_dev',
+            'core_mpchart_dev',
+            'core_calendar_dev',
+            'core_common_dev',
+            'core_meum_dev',
+//            'core_udesk_dev',
+            'core_qrcode_dev',
+            'core_threadsdownloader_dev',
+            'core_message_dev',
+            'core_icxchart_dev',
+            'core_resource_dev',
+            'core_ui_dev',
+            'core_faceplus_dev'
 }
 
+/**
+ * 检查模块依赖
+ * @param unitNameArray
+ */
+def checkDependency(String ... unitNameArray) {
+    if (unitNameArray != null && unitNameArray.length > 0) {
+        String unitStr
+        for (int i = 0; i < unitNameArray.length; i++) {
+            unitStr = unitNameArray[i].replace("_dev", "")
+            if(!this."${unitNameArray[i]}".toBoolean()) {
+                dependencies.compile(rootProject.ext."${unitStr}_compile") {
+                    exclude group: rootProject.ext.groupid_project
+                    exclude group: rootProject.ext.groupid_module
+                    exclude group: rootProject.ext.groupid_core
+                }
+            } else {
+                dependencies.compile project(":" + rootProject.ext."${unitStr}")
+            }
+        }
+
+    }
+}
