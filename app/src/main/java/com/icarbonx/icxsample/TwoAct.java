@@ -1,25 +1,23 @@
 package com.icarbonx.icxsample;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 
 /**
  * Author:  Kevin Feng
  * Email:   fengfenkai@icarbonx.com
- * Date:    2018/1/31
+ * Date:    2018/2/1
  * Description:
  */
-public class MainActivity extends Activity {
+public class TwoAct extends Activity {
 
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.two);
+        GuaGuaView guaGuaView = (GuaGuaView) findViewById(R.id.tv_Scratch);
+        guaGuaView.initScratchCard(this, 0xFFCECED1, 20, 1f);
+        guaGuaView.setText("一等奖");
     }
-
 }
