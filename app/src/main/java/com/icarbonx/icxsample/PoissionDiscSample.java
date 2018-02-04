@@ -1,75 +1,8 @@
 package com.icarbonx.icxsample;
-/*
-    function poissonDiscSampler(width, height, radius) {
-            var k = 30, // maximum number of samples before rejection
-            radius2 = radius * radius,
-            R = 3 * radius2,
-            cellSize = radius * Math.SQRT1_2,
-            gridWidth = Math.ceil(width / cellSize),
-            gridHeight = Math.ceil(height / cellSize),
-            grid = new Array(gridWidth * gridHeight),
-            queue = [],
-            queueSize = 0,
-            sampleSize = 0;
 
-            return function() {
-            if (!sampleSize) return sample(Math.random() * width, Math.random() * height);
+import java.util.ArrayList;
+import java.util.List;
 
-            // Pick a random existing sample and remove it from the queue.
-            while (queueSize) {
-            var i = Math.random() * queueSize | 0,
-            s = queue[i];
-
-            // Make a new candidate between [radius, 2 * radius] from the existing sample.
-            for (var j = 0; j < k; ++j) {
-        var a = 2 * Math.PI * Math.random(),
-        r = Math.sqrt(Math.random() * R + radius2),
-        x = s[0] + r * Math.cos(a),
-        y = s[1] + r * Math.sin(a);
-
-        // Reject candidates that are outside the allowed extent,
-        // or closer than 2 * radius to any existing sample.
-        if (0 <= x && x < width && 0 <= y && y < height && far(x, y)) return sample(x, y);
-        }
-
-        queue[i] = queue[--queueSize];
-        queue.length = queueSize;
-        }
-        };
-
-        function far(x, y) {
-        var i = x / cellSize | 0,
-        j = y / cellSize | 0,
-        i0 = Math.max(i - 2, 0),
-        j0 = Math.max(j - 2, 0),
-        i1 = Math.min(i + 3, gridWidth),
-        j1 = Math.min(j + 3, gridHeight);
-
-        for (j = j0; j < j1; ++j) {
-        var o = j * gridWidth;
-        for (i = i0; i < i1; ++i) {
-        if (s = grid[o + i]) {
-        var s,
-        dx = s[0] - x,
-        dy = s[1] - y;
-        if (dx * dx + dy * dy < radius2) return false;
-        }
-        }
-        }
-
-        return true;
-        }
-
-        function sample(x, y) {
-        var s = [x, y];
-        queue.push(s);
-        grid[gridWidth * (y / cellSize | 0) + (x / cellSize | 0)] = s;
-        ++sampleSize;
-        ++queueSize;
-        return s;
-        }
-        }
-        */
 /**
  * Author:  Kevin Feng
  * Email:   fengfenkai@icarbonx.com
@@ -78,6 +11,27 @@ package com.icarbonx.icxsample;
  */
 public class PoissionDiscSample {
 
+    public static final void main(String [] args) {
+//        int k = 0;
+//        boolean isFlag = true;
+//        PoissionDiscSample sample = new PoissionDiscSample(500, 500, 50);
+//        while (isFlag) {
+//            for (int i = 0; i < 10; ++i) {
+//                double [] out = sample.execute();
+//                if (out != null) {
+//                    System.out.print(k + "["+ out[0] + ", " + out[1] + "]");
+//                    k++;
+//                } else {
+//                    isFlag = false;
+//                    break;
+//                }
+//            }
+//        }
+        double a = 1.99;
+        int b = (int) a;
+        System.err.println(b);
+    }
+
     int k;
     int radius2;
     int R;
@@ -85,45 +39,106 @@ public class PoissionDiscSample {
     double cellSize;
     int gridWidth;
     int gridHeight;
-    int [] grid;
+    double [] grid;
 
-    int [] queue;
+    List<double[]> queue;
     int queueSize = 0;
     int sampleSize = 0;
 
+    private int mWidth;
+    private int mHeight;
+
     public PoissionDiscSample(int width, int height, int radius) {
-        k = 30; // maximum number of samples before rejection
+        mWidth = width;
+        mHeight = height;
+        k = 30;
         radius2 = radius * radius;
         R = 3 * radius2;
         cellSize = radius * (1 / Math.sqrt(2));
         gridWidth = (int) Math.ceil(width / cellSize);
         gridHeight = (int) Math.ceil(height / cellSize);
-        grid = new int[gridWidth * gridHeight];
+        grid = new double[gridWidth * gridHeight];
+        queue = new ArrayList();
     }
 
+    /**
+     * 执行
+     * @return
+     */
+    public double [] execute() {
+        if (sampleSize == 0) {
+            return sample(Math.random() * mWidth, Math.random() * mHeight);
+        }
+        while (queueSize > 0) {
+            int i = (int) (Math.random() * queueSize);
+            double[] s = queue.get(i);
+            for (int j = 0; j < k; ++j) {
+                double a = 2 * Math.PI * Math.random();
+                double r = Math.sqrt(Math.random() * R + radius2);
+                double x = s[0] + r * Math.cos(a);
+                double y = s[1] + r * Math.sin(a);
 
-//    public boolean far(int x, int y) {
-//        int i = (int) (x / cellSize);
-//        int j = (int) (y / cellSize);
-//        int i0 = Math.max(i - 2, 0);
-//        int j0 = Math.max(j - 2, 0);
-//        int i1 = Math.min(i + 3, gridWidth);
-//        int j1 = Math.min(j + 3, gridHeight);
-//
-//        for (j = j0; j < j1; ++j) {
-//            int o = j * gridWidth;
-//            for (i = i0; i < i1; ++i) {
-//                int s = grid[o + i];
-//                if (s = grid[o + i]) {
-//                    var s,
-//                            dx = s[0] - x,
-//                            dy = s[1] - y;
-//                    if (dx * dx + dy * dy < radius2) return false;
-//                }
-//            }
-//        }
-//
-//        return true;
-//    }
+                if (0 <= x && x < mWidth && 0 <= y && y < mHeight && far(x, y)) {
+                    return sample(x, y);
+                }
+            }
+            queue.set(i, queue.get(--queueSize));
+            queue.remove(queueSize);
+        }
+        return null;
+    }
+
+    /**
+     * 返回采样
+     * @param x
+     * @param y
+     * @return
+     */
+    public double [] sample(double x, double y) {
+        double s[] = {x, y};
+        queue.add(s);
+        int index = gridWidth * (int)(y / cellSize) + (int)(x / cellSize);
+        if (index < grid.length - 1) {
+            grid[index] = s[0];
+            grid[index + 1] = s[1];
+            ++sampleSize;
+            ++queueSize;
+            return s;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 判断距离
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean far(double x, double y) {
+        int i = (int) (x / cellSize);
+        int j = (int) (y / cellSize);
+        int i0 = Math.max(i - 2, 0);
+        int j0 = Math.max(j - 2, 0);
+        int i1 = Math.min(i + 3, gridWidth);
+        int j1 = Math.min(j + 3, gridHeight);
+
+        for (j = j0; j < j1; ++j) {
+            int o = j * gridWidth;
+            double s[] = new double[2];
+            for (i = i0; i < i1; ++i) {
+                if(grid.length > o + i + 1) {
+                    s[0] = grid[o + i];
+                    s[1] = grid[o + i + 1];
+                    double dx = s[0] - x;
+                    double dy = s[1] - y;
+                    if (dx * dx + dy * dy < radius2) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.icarbonx.icxsample;
+package com.icarbonx.icxsample.utils;
 
 /**
  * Author:  Kevin Feng
