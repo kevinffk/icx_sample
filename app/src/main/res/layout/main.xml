@@ -9,4 +9,10 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.icarbonx.icxsample.HumanBodyShadowView
+        android:id="@+id/human_body_shadow"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

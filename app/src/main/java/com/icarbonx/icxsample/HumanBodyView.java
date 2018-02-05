@@ -3,6 +3,7 @@ package com.icarbonx.icxsample;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
@@ -10,11 +11,13 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RadialGradient;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -37,6 +40,10 @@ public class HumanBodyView extends View {
     private int MIN_DISTANCE = 0;
 
     private static final float HUMAN_SCALE = 0.62f;
+
+    private static final float ARC_SCALE = 0.9f;
+
+    private static final float ARC_HEIGHT_WIDTH_SCALE = 0.2f;
 
     private static final int RESET_CANVAS = 1;
 
@@ -63,7 +70,9 @@ public class HumanBodyView extends View {
 
     //椭圆参数
     private int arcWidth = 0;
-    private int arcHeigh = 0;
+    private int arcHeight = 0;
+    private RectF arcRect;
+    private Paint arcPaint;
 
 
     private Handler mHandler = new Handler() {
@@ -98,6 +107,14 @@ public class HumanBodyView extends View {
         CIRCLE_SIZE = DisplayUtil.dip2px(80, context);
         MIN_DISTANCE = DisplayUtil.dip2px(10, context);
         mHumanOnBmp = BitmapFactory.decodeResource(getResources(), R.mipmap.human_body);
+
+        arcPaint = new Paint();
+        arcPaint.setColor(Color.parseColor("#aa1b1f2a"));
+        arcPaint.setAntiAlias(true);// 抗锯齿
+        arcPaint.setDither(true);// 防抖动
+        arcPaint.setStyle(Paint.Style.FILL_AND_STROKE);// 画笔类型： STROKE空心 FILL实心 FILL_AND_STROKE用契形填充
+        arcPaint.setStrokeJoin(Paint.Join.ROUND);// 画笔接洽点类型
+        arcPaint.setStrokeCap(Paint.Cap.ROUND);// 画笔笔刷类型
     }
 
 
@@ -105,6 +122,7 @@ public class HumanBodyView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //画椭圆形
+        canvas.drawArc(arcRect, 0, 360, true, arcPaint);
 
         canvas.drawBitmap(mHumanOnBmp, 0, 0, null); //蓝色
         if (isTouch) {
@@ -153,7 +171,10 @@ public class HumanBodyView extends View {
 
         viewWidth = (int) ((float) (mHumanOnBmp.getWidth()) / mHumanOnBmp.getHeight() * viewHeight);
 
+        arcWidth = (int) (viewWidth * ARC_SCALE);
+        arcHeight = (int) (arcWidth * ARC_HEIGHT_WIDTH_SCALE);
 
+        arcRect = new RectF((viewWidth - arcWidth) / 2, viewHeight - arcHeight, (viewWidth - arcWidth) / 2 + arcWidth, viewHeight);
     }
 
 
@@ -275,4 +296,10 @@ public class HumanBodyView extends View {
 
         return result;
     }*/
+
+    public void setmHumanOnBmp(int resId) {
+        mHumanOnBmp.recycle();
+        mHumanOnBmp = zoomImg(resId);
+        invalidate();
+    }
 }
