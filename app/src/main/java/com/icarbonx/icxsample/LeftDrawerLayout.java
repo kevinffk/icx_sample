@@ -3,6 +3,7 @@ package com.icarbonx.icxsample;
 import android.content.Context;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
  * Description:
  */
 public class LeftDrawerLayout extends ViewGroup {
-    private static final int MIN_DRAWER_MARGIN = 64; // dp
+
     /**
      * Minimum velocity that will be detected as a fling
      */
@@ -75,13 +76,13 @@ public class LeftDrawerLayout extends ViewGroup {
 
             @Override
             public boolean tryCaptureView(View child, int pointerId) {
-                return child == mRightView || child == mTab1View;
+                return child == mTab1View;
             }
 
-            @Override
-            public void onEdgeDragStarted(int edgeFlags, int pointerId) {
-                mHelper.captureChildView(mRightView, pointerId);
-            }
+//            @Override
+//            public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+//                mHelper.captureChildView(mRightView, pointerId);
+//            }
 
             @Override
             public void onViewReleased(View releasedChild, float xvel, float yvel) {
@@ -92,7 +93,22 @@ public class LeftDrawerLayout extends ViewGroup {
                     mHelper.settleCapturedViewAt(xvel < 0 || xvel == 0 && offset > 0.5f ? (mViewWidth - childWidth) : mViewWidth, releasedChild.getTop());
                     invalidate();
                 } else if (mTab1View == releasedChild) {
-
+                    final int childWidth = releasedChild.getWidth();
+                    float offset = (mViewWidth - releasedChild.getLeft() - childWidth) * 1.0f / mViewWidth;
+//                    mHelper.settleCapturedViewAt(xvel < 0 || xvel == 0 && offset > 0.5f ? - childWidth : (mViewWidth - childWidth), releasedChild.getTop());
+                    if (xvel < 0 || xvel == 0 && offset > 0.5f) {
+                        Log.e("xx", "b=" + -childWidth);
+                        mHelper.settleCapturedViewAt(- childWidth, releasedChild.getTop());
+                        invalidate();
+//                        mHelper.smoothSlideViewTo(releasedChild, - childWidth,releasedChild.getTop());
+//                        ViewCompat.postInvalidateOnAnimation(LeftDrawerLayout.this);
+                    } else {
+                        Log.e("xx", "a=" + (mViewWidth - childWidth));
+                        mHelper.settleCapturedViewAt((mViewWidth - childWidth), releasedChild.getTop());
+                        invalidate();
+//                        mHelper.smoothSlideViewTo(releasedChild, (mViewWidth - childWidth),releasedChild.getTop());
+//                        ViewCompat.postInvalidateOnAnimation(LeftDrawerLayout.this);
+                    }
                 }
 
             }
@@ -109,9 +125,12 @@ public class LeftDrawerLayout extends ViewGroup {
                     changedView.setVisibility(offset == 0 ? View.INVISIBLE : View.VISIBLE);
                     invalidate();
                 } else if (changedView == mTab1View) {
-
+                    final int childWidth = changedView.getWidth();
+                    float offset = (mViewWidth - changedView.getLeft() - childWidth) * 1.0f / mViewWidth;
+                    mTab1DragOffset = offset;
+                    mRightView.layout(left + mTab1View.getWidth(), 0, left + mTab1View.getWidth() + mRightView.getWidth(), mRightView.getHeight());
+                    invalidate();
                 }
-
             }
 
             @Override
@@ -119,7 +138,7 @@ public class LeftDrawerLayout extends ViewGroup {
                 if (child == mRightView) {
                     return child.getWidth();
                 } else if (child == mTab1View) {
-                    return mViewWidth;
+                    return child.getWidth();
                 }
                 return 0;
             }
@@ -163,8 +182,6 @@ public class LeftDrawerLayout extends ViewGroup {
         mLeftView = leftView;
         mRightView = rightView;
         mTab1View = tab1View;
-
-
     }
 
     @Override
