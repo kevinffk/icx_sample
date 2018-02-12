@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.icarbonx.icxsample.TestTabGroup
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="dragg1"
+            android:background="#8cbc8a"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:text="dragg2"
+            android:background="#6da6da"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:text="dragg3"
+            android:background="#ae6dda"
+            android:layout_marginLeft="30dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+    </com.icarbonx.icxsample.TestTabGroup>
+</LinearLayout>

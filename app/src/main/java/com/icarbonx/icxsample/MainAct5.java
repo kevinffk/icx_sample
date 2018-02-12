@@ -1,0 +1,22 @@
+package com.icarbonx.icxsample;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import com.icarbonx.icxsample.R;
+
+/**
+ * Author:  Kevin Feng
+ * Email:   fengfenkai@icarbonx.com
+ * Date:    2018/2/12
+ * Description:
+ */
+public class MainAct5 extends Activity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main5);
+    }
+}

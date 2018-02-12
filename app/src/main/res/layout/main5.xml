@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.icarbonx.icxsample.LeftDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--content-->
+    <RelativeLayout
+        android:clickable="true"
+        android:layout_width="match_parent"
+        android:background="#44ff0000"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/id_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello world"
+            android:textSize="40sp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <!--menu-->
+    <FrameLayout
+        android:id="@+id/id_container_menu"
+        android:layout_width="match_parent"
+        android:background="#315fa1"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="I'm menu"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- tab1 -->
+    <ImageView
+        android:id="@+id/tab1"
+        android:layout_width="80dp"
+        android:layout_marginTop="200dp"
+        android:background="#000000"
+        android:layout_height="80dp"
+        android:src="@mipmap/ic_launcher"
+        />
+
+</com.icarbonx.icxsample.LeftDrawerLayout>
