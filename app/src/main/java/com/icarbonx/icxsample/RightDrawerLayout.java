@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.QuickContactBadge;
 
 /**
  * Author:  Kevin Feng
@@ -34,7 +35,7 @@ public class RightDrawerLayout extends ViewGroup {
 
     private View mDragView;
     private View mTab1View;
-    private View mTab2view;
+    private View mTab2View;
 
     private Animation rightInAnim;
     private Animation leftInAnim;
@@ -93,16 +94,16 @@ public class RightDrawerLayout extends ViewGroup {
                     if (left == - mTab1View.getWidth()) {
                         if (mTab1View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.INVISIBLE);
-                            mTab2view.setVisibility(View.VISIBLE);
+                            mTab2View.setVisibility(View.VISIBLE);
 
-                            mTab2view.startAnimation(leftInAnim);
+                            mTab2View.startAnimation(leftInAnim);
                         }
 
                     } else if (left == mViewWidth - mTab1View.getWidth()) {
 
-                        if (mTab2view.getVisibility() != View.INVISIBLE) {
+                        if (mTab2View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.VISIBLE);
-                            mTab2view.setVisibility(View.INVISIBLE);
+                            mTab2View.setVisibility(View.INVISIBLE);
 
                             mTab1View.startAnimation(rightInAnim);
                         }
@@ -122,6 +123,11 @@ public class RightDrawerLayout extends ViewGroup {
                     }
                     invalidate();
                 }
+            }
+
+            @Override
+            public int getViewHorizontalDragRange(View child) { //click事件防冲突
+                return 1;
             }
         });
         mViewDragHelper.setMinVelocity(minVel);
@@ -180,7 +186,39 @@ public class RightDrawerLayout extends ViewGroup {
         mDragView = dragView;
         mRightView = rightView;
         mTab1View = tab1View;
-        mTab2view = tab2View;
+        mTab2View = tab2View;
+
+        mTab1View.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDrawer();
+            }
+        });
+
+        mTab2View.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closeDrawer();
+            }
+        });
+    }
+
+    /**
+     * 打开drawer
+     */
+    private void openDrawer() {
+        mTab1DragOffset = 1.0f;
+        mViewDragHelper.smoothSlideViewTo(mDragView, -mTab1View.getWidth(), mDragView.getTop());
+        invalidate();
+    }
+
+    /**
+     * 关闭drawer
+     */
+    private void closeDrawer() {
+        mTab1DragOffset = 0.0f;
+        mViewDragHelper.smoothSlideViewTo(mDragView, mViewWidth - mTab1View.getWidth(), mDragView.getTop());
+        invalidate();
     }
 
 
