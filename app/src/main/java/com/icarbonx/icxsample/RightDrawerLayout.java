@@ -1,14 +1,11 @@
 package com.icarbonx.icxsample;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -71,7 +68,7 @@ public class RightDrawerLayout extends ViewGroup {
             @Override
             public int clampViewPositionHorizontal(View child, int left, int dx) {
                 if (child == mDragView) {
-                    return left;
+                    return Math.max(-mTab1View.getWidth(), Math.min(left, mViewWidth - mTab1View.getWidth()));
                 }
                 return 0;
             }
@@ -88,6 +85,11 @@ public class RightDrawerLayout extends ViewGroup {
             public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
                 super.onViewPositionChanged(changedView, left, top, dx, dy);
                 if (changedView == mDragView) {
+
+                    float offset = Math.abs(mViewWidth - changedView.getWidth() - left) * 1.0f / mViewWidth;
+                    mTab1DragOffset = offset;
+
+                    mLeftView.setAlpha(mTab1DragOffset);
                     if (left == - mTab1View.getWidth()) {
                         if (mTab1View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.INVISIBLE);
@@ -112,8 +114,7 @@ public class RightDrawerLayout extends ViewGroup {
             public void onViewReleased(View releasedChild, float xvel, float yvel) {
                 if (releasedChild == mDragView) {
                     int tab1Width = mTab1View.getWidth();
-                    float offset = (mViewWidth - releasedChild.getLeft() - tab1Width) * 1.0f / mViewWidth;
-
+                    float offset = Math.abs(mViewWidth - releasedChild.getLeft() - tab1Width) * 1.0f / mViewWidth;
                     if (xvel < 0 || xvel == 0 && offset > 0.5f) {
                         mViewDragHelper.settleCapturedViewAt(-tab1Width, releasedChild.getTop());
                     } else {
@@ -133,7 +134,6 @@ public class RightDrawerLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         View leftView = mLeftView;
         View dragView = mDragView;
-        View rightView = mRightView;
         View tab1View = mTab1View;
 
         //left view
