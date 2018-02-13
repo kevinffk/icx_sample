@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.icarbonx.icxsample.RightDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainAct6">
+
+    <FrameLayout
+        android:id="@+id/left_view"
+        android:background="#a93636"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/drag_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/tab1"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher" />
+
+        <FrameLayout
+            android:id="@+id/right_view"
+            android:layout_toRightOf="@id/tab1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#52acf1" />
+
+        <ImageView
+            android:id="@+id/tab2"
+            android:layout_toRightOf="@id/tab1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+
+</com.icarbonx.icxsample.RightDrawerLayout>

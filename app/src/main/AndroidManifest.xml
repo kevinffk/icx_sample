@@ -8,7 +8,7 @@
         android:theme="@android:style/Theme.NoTitleBar"
         android:supportsRtl="true" >
         <activity
-            android:name="com.icarbonx.icxsample.MainAct5"
+            android:name="com.icarbonx.icxsample.MainAct6"
             android:screenOrientation="portrait">
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--内部的布局需要按照1、2、3的顺序，3嵌套4、5布局的结构来布局-->
+    <com.icarbonx.icxsample.HandleDrawerLayout
+        android:id="@+id/hdl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--1 内容布局-->
+        <FrameLayout
+            android:id="@+id/hdl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f7f7f7">
+        </FrameLayout>
+
+        <!--2 内容布局上面的半透明布局-->
+        <View
+            android:id="@+id/hdl_scrim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#7f000000"/>
+
+        <!--3 侧滑菜单布局和手柄布局的父布局-->
+        <LinearLayout
+            android:id="@+id/hdl_drawer_group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <!--4 侧滑菜单布局-->
+            <FrameLayout
+                android:id="@+id/hdl_menu_view"
+                android:layout_width="245dp"
+                android:layout_height="match_parent"
+                android:background="#2d3144">
+            </FrameLayout>
+            <!--5 侧滑手柄布局-->
+            <RelativeLayout
+                android:id="@+id/hdl_handle_view"
+                android:layout_width="40dp"
+                android:layout_height="173dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:background="#3fff00ff">
+                <TextView
+                    android:id="@+id/hdl_handle_view_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="1"
+                    android:maxEms="1"
+                    android:gravity="center"
+                    android:textSize="23sp"
+                    android:text="我是手柄"
+                    android:layout_gravity="center_vertical" />
+            </RelativeLayout>
+        </LinearLayout>
+    </com.icarbonx.icxsample.HandleDrawerLayout>
+
+</FrameLayout>
