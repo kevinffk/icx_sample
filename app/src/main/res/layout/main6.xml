@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.icarbonx.icxsample.RightDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,16 +8,31 @@
 
     <FrameLayout
         android:id="@+id/left_view"
-        android:background="#a93636"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#a93636">
+        <!--<com.icarbonx.icxsample.NailLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--app:nailIsLeft="true"-->
+        <!--app:nailSize="30dp"-->
+        <!--android:background="#0000"-->
+        <!--app:nailBackgroundColor="#3a2f4366"-->
+        <!--app:nailStockColor="#3e5b91"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/nail_icon_left"/>-->
+        <!--</com.icarbonx.icxsample.NailLayout>-->
 
         <TextView
-            android:text="我是第一页"
-            android:textSize="25sp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="我是第一页"
+            android:textSize="25sp" />
     </FrameLayout>
 
     <RelativeLayout
@@ -24,39 +40,77 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
+        <!--<ImageView-->
+        <!--android:id="@+id/tab1"-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:clickable="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:src="@mipmap/ic_launcher" />-->
+
+        <com.icarbonx.icxsample.NailLayout
+            android:id="@+id/tab1"
+            android:layout_width="60dp"
+            android:layout_height="120dp"
+            android:layout_centerVertical="true"
+            android:background="#0000"
+            android:clickable="true"
+            app:nailBackgroundColor="#3a2f4366"
+            app:nailIsLeft="false"
+            app:nailSize="30dp"
+            app:nailStockColor="#3e5b91">
+
             <ImageView
-                android:id="@+id/tab1"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:clickable="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/nail_icon_left" />
+        </com.icarbonx.icxsample.NailLayout>
 
         <FrameLayout
             android:id="@+id/right_view"
-            android:layout_toRightOf="@id/tab1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#52acf1" >
+            android:layout_toRightOf="@id/tab1"
+            android:background="#52acf1">
 
             <TextView
-                android:text="数字生命人体模型"
-                android:textSize="25sp"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="数字生命人体模型"
+                android:textSize="25sp" />
         </FrameLayout>
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/tab2"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toRightOf="@id/tab1"-->
+            <!--android:clickable="true"-->
+            <!--android:src="@mipmap/ic_launcher"-->
+            <!--android:visibility="invisible" />-->
+        <com.icarbonx.icxsample.NailLayout
             android:id="@+id/tab2"
-            android:layout_toRightOf="@id/tab1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:visibility="invisible"
-            android:clickable="true"
+            android:layout_width="60dp"
+            android:layout_height="120dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher" />
+            android:background="#0000"
+            android:clickable="true"
+            android:layout_toRightOf="@id/tab1"
+            android:visibility="invisible"
+            app:nailBackgroundColor="#3a2f4366"
+            app:nailIsLeft="true"
+            app:nailSize="30dp"
+            app:nailStockColor="#3e5b91">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/nail_icon_left" />
+        </com.icarbonx.icxsample.NailLayout>
     </RelativeLayout>
 
 </com.icarbonx.icxsample.RightDrawerLayout>

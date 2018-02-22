@@ -3,6 +3,7 @@ package com.icarbonx.icxsample;
 import android.content.Context;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +101,6 @@ public class RightDrawerLayout extends ViewGroup {
                         }
 
                     } else if (left == mViewWidth - mTab1View.getWidth()) {
-
                         if (mTab2View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.VISIBLE);
                             mTab2View.setVisibility(View.INVISIBLE);
