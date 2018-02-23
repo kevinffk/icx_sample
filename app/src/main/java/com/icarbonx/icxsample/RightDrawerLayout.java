@@ -3,13 +3,11 @@ package com.icarbonx.icxsample;
 import android.content.Context;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.QuickContactBadge;
+import android.view.animation.TranslateAnimation;
 
 /**
  * Author:  Kevin Feng
@@ -32,7 +30,6 @@ public class RightDrawerLayout extends ViewGroup {
      * View.
      */
     private View mLeftView;
-    private View mRightView;
 
     private View mDragView;
     private View mTab1View;
@@ -57,6 +54,14 @@ public class RightDrawerLayout extends ViewGroup {
     }
 
     private void initView() {
+        leftInAnim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, -1f, Animation.RELATIVE_TO_SELF, 0, Animation.ABSOLUTE
+            , 0, Animation.ABSOLUTE, 0);
+        leftInAnim.setDuration(300);
+
+        rightInAnim = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 1f, Animation.RELATIVE_TO_SELF, 0, Animation.ABSOLUTE
+                , 0, Animation.ABSOLUTE, 0);
+        rightInAnim.setDuration(300);
+
         final float density = getResources().getDisplayMetrics().density;
         final float minVel = MIN_FLING_VELOCITY * density;
 
@@ -92,7 +97,7 @@ public class RightDrawerLayout extends ViewGroup {
                     mTab1DragOffset = offset;
 
                     mLeftView.setAlpha(mTab1DragOffset);
-                    if (left == - mTab1View.getWidth()) {
+                    if (left == - mTab1View.getMeasuredWidth()) {
                         if (mTab1View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.INVISIBLE);
                             mTab2View.setVisibility(View.VISIBLE);
@@ -100,7 +105,7 @@ public class RightDrawerLayout extends ViewGroup {
                             mTab2View.startAnimation(leftInAnim);
                         }
 
-                    } else if (left == mViewWidth - mTab1View.getWidth()) {
+                    } else if (left == mViewWidth - mTab1View.getMeasuredWidth()) {
                         if (mTab2View.getVisibility() != View.INVISIBLE) {
                             mTab1View.setVisibility(View.VISIBLE);
                             mTab2View.setVisibility(View.INVISIBLE);
@@ -114,7 +119,7 @@ public class RightDrawerLayout extends ViewGroup {
             @Override
             public void onViewReleased(View releasedChild, float xvel, float yvel) {
                 if (releasedChild == mDragView) {
-                    int tab1Width = mTab1View.getWidth();
+                    int tab1Width = mTab1View.getMeasuredWidth();
                     float offset = Math.abs(mViewWidth - releasedChild.getLeft() - tab1Width) * 1.0f / mViewWidth;
                     if (xvel < 0 || xvel == 0 && offset > 0.5f) {
                         mViewDragHelper.settleCapturedViewAt(-tab1Width, releasedChild.getTop());
@@ -132,8 +137,6 @@ public class RightDrawerLayout extends ViewGroup {
         });
         mViewDragHelper.setMinVelocity(minVel);
 
-        leftInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.left_in);
-        rightInAnim = AnimationUtils.loadAnimation(getContext(), R.anim.right_in);
     }
 
     @Override
@@ -174,17 +177,15 @@ public class RightDrawerLayout extends ViewGroup {
         ViewGroup dragView = (ViewGroup) getChildAt(1);
         View tab1View = dragView.getChildAt(0);
         View tab2View  = dragView.getChildAt(2);
-        View rightView = dragView.getChildAt(1);
 
         lp = (MarginLayoutParams) dragView.getLayoutParams();
 
-        final int drawViewWidthSpec = MeasureSpec.makeMeasureSpec(widthSize + tab1View.getLayoutParams().width - lp.leftMargin - lp.rightMargin, MeasureSpec.EXACTLY);
+        final int drawViewWidthSpec = MeasureSpec.makeMeasureSpec(widthSize + tab1View.getMeasuredWidth() - lp.leftMargin - lp.rightMargin, MeasureSpec.EXACTLY);
         final int drawViewHeightSpec = MeasureSpec.makeMeasureSpec(heightSize - lp.topMargin - lp.bottomMargin, MeasureSpec.EXACTLY);
         dragView.measure(drawViewWidthSpec, drawViewHeightSpec);
 
         mLeftView = leftView;
         mDragView = dragView;
-        mRightView = rightView;
         mTab1View = tab1View;
         mTab2View = tab2View;
 
@@ -208,7 +209,7 @@ public class RightDrawerLayout extends ViewGroup {
      */
     private void openDrawer() {
         mTab1DragOffset = 1.0f;
-        mViewDragHelper.smoothSlideViewTo(mDragView, -mTab1View.getWidth(), mDragView.getTop());
+        mViewDragHelper.smoothSlideViewTo(mDragView, -mTab1View.getMeasuredWidth(), mDragView.getTop());
         invalidate();
     }
 
@@ -217,7 +218,7 @@ public class RightDrawerLayout extends ViewGroup {
      */
     private void closeDrawer() {
         mTab1DragOffset = 0.0f;
-        mViewDragHelper.smoothSlideViewTo(mDragView, mViewWidth - mTab1View.getWidth(), mDragView.getTop());
+        mViewDragHelper.smoothSlideViewTo(mDragView, mViewWidth - mTab1View.getMeasuredWidth(), mDragView.getTop());
         invalidate();
     }
 
