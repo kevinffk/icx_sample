@@ -1,31 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.icarbonx.icxsample.RightDrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainAct6">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/left_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#a93636">
-        <!--<com.icarbonx.icxsample.NailLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--app:nailIsLeft="true"-->
-        <!--app:nailSize="30dp"-->
-        <!--android:background="#0000"-->
-        <!--app:nailBackgroundColor="#3a2f4366"-->
-        <!--app:nailStockColor="#3e5b91"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@mipmap/nail_icon_left"/>-->
-        <!--</com.icarbonx.icxsample.NailLayout>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,14 +22,6 @@
         android:id="@+id/drag_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
-
-        <!--<ImageView-->
-        <!--android:id="@+id/tab1"-->
-        <!--android:layout_width="80dp"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:clickable="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:src="@mipmap/ic_launcher" />-->
 
         <com.icarbonx.icxsample.NailLayout
             android:id="@+id/tab1"

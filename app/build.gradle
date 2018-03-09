@@ -34,6 +34,8 @@ dependencies {
     })
     annotationProcessor rootProject.ext.butterknifeCompiler
     compile 'com.android.support:support-v4:25.0.0'
+
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
 }
 
 /**

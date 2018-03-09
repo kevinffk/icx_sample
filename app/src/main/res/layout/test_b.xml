@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:id="@+id/view"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/p1"
+                android:id="@+id/iv1"
+                android:scaleType="centerCrop"
+                android:layout_height="250dp" />
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_margin="20dp"
+                android:textColor="#333333"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="海外网3月9日电 当地时间8日，美国总统特朗普就美国加征钢铝关税的“232条款”在白宫举行签署仪式，宣布将对进口钢铁征收25%关税，对进口铝材征收10%关税。然而在仪式上，美媒却注意到特朗普“状况频出”，连闹两个乌龙，也引得场面有些尴尬。
+据美国CNN新闻网及美国中文网报道，在当天的关税签署仪式上，特朗普似乎一度忘记了在关税命令上签字，幸亏其财政部长姆努钦及时“提了个醒”。
+文章提到，特朗普当时邀请与会的钢铝产业工人一起去总统办公室拍照，却还没有在关税命令上签字。这时，姆努钦插了进来说：“您已经签字了吗？”这时的特朗普才反应过来，他表示：“是的，我这就会做。我们也会去总统办公室，也会去签署命令。谢谢你。”
+不仅如此，特朗普还在随后和钢铁企业工人谈话时出现了一点“小意外”。一位来自宾夕法尼亚州钢铁工人参加了当天的仪式，他在发言时也讲述了自己的父亲在20世纪80年代，因为钢铁进口而失去了工作。
+特朗普在听完他的演讲后也不无感触的表示：“今天，你的父亲也会从天上看着你，他会对你感到非常骄傲的。”然而，这位钢铁工人却表示自己的父亲现在依然健在，并引发了一阵笑声。特朗普随后反应得很快，称“那他就会更加为你骄傲的！”"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

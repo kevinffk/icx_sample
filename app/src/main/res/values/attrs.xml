@@ -2,10 +2,6 @@
 <resources>
     
     <declare-styleable name="NailLayout">
-        <!--<attr name="nailArrow" format="enum">-->
-            <!--<enum name="left" value="0"/>-->
-            <!--<enum name="right" value="1"/>-->
-        <!--</attr>-->
         <attr name="nailIsLeft" format="boolean"/>
         <attr name="nailStockColor" format="color"/>
         <attr name="nailSize" format="dimension"/>

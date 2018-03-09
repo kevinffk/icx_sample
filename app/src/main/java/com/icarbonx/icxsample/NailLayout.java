@@ -30,8 +30,6 @@ public class NailLayout extends FrameLayout {
     private static final int NAIL_DEFAULT_STOCK_COLOR = 0xffffff;
     private static final int NAIL_DEFAULT_BACKGROUND_COLOR = 0x000000;
     private static final int NAIL_DEFAULT_SIZE = 50;
-    private static final int NAIL_ARROW_LEFT = 0;
-    private static final int NAIL_ARROW_RIGHT = 1;
 
     private int mNailStockColor = 0x000000;
     private int mNailBackgroundColor = 0xffffff;
